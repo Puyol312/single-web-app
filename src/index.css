@@ -1,0 +1,9 @@
+:root{
+  --color-rojo-ejemplo:#f00; 
+}
+*{
+  box-sizing:border-box;
+}
+body{
+  margin:0;
+}
