@@ -27,7 +27,7 @@ const basePath = "/single-web-app";
 export function initRouter(container: Element) {
 
   function goTo(path) { 
-    history.pushState({}, "", path);
+    history.pushState({}, "", basePath + path);
     handleRoute(path);
   }
   function getCurrentPath() {

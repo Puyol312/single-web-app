@@ -15,10 +15,11 @@
   font-family: var(--default-font-family);
   color: #009048;
   font-weight: 700;
-  font-size: 80px;
-  line-height: 88%;
-  overflow: hidden;
-  display: block;
+  font-size: clamp(40px, 8vw, 80px); 
+  line-height: 1; 
+  margin: 0; 
+  word-break: break-word; 
+  overflow: visible; 
 }
 .welcome-container span{
   color: #91CCAF;
