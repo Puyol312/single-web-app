@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "parcel serve ./src/index.html",
-    "build": "parcel build ./src/index.html --dist-dir build --public-url /single-web-app",
+    "build": "parcel build ./src/index.html --dist-dir build --public-url /tarea3",
     "deploy": "gh-pages -d build",
     "build-and-deploy": "npm run build && npm run deploy"
   },
