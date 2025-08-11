@@ -1,5 +1,5 @@
 {
-  "name": "tarea3",
+  "name": "single-web-app",
   "version": "1.0.0",
   "scripts": {
     "dev": "parcel serve ./src/index.html",
