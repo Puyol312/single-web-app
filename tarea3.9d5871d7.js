@@ -182,5 +182,5 @@ const e=new URL(import.meta.resolve("2DBuG")).href,t=new URL(import.meta.resolve
         <score-box></score-box>
         <mi-boton name="\xa1Volver a Jugar!"></mi-boton>
       </div>
-      `);let d=n.querySelector("mi-boton");d?.addEventListener("click",t=>{t.stopPropagation(),e.goTo("./welcome")})},2e3),n}}];const u=document.querySelector("#root");console.log("Hola 1"),u&&function(e){function t(e){history.pushState({},"",e),s(e)}function n(){return location.pathname.replace("/single-web-app","")||"/"}function s(n){let s=!1;for(let a of m)if(a.path.test(n)){let n=a.component({goTo:t});e.firstChild&&e.firstChild.remove(),e.appendChild(n),s=!0;break}s||t("/welcome")}"/"==n()?t("/welcome"):s(n()),window.onpopstate=function(e){s(n())}}(u);
-//# sourceMappingURL=tarea3.67ada9d0.js.map
+      `);let d=n.querySelector("mi-boton");d?.addEventListener("click",t=>{t.stopPropagation(),e.goTo("./welcome")})},2e3),n}}];const u="/single-web-app",g=document.querySelector("#root");console.log("Hola 1"),g&&function(e){function t(e){history.pushState({},"",u+e),s(e)}function n(){return location.pathname.replace(u,"")||"/"}function s(n){let s=!1;for(let a of m)if(a.path.test(n)){let n=a.component({goTo:t});e.firstChild&&e.firstChild.remove(),e.appendChild(n),s=!0;break}s||t("/welcome")}"/"==n()?t("/welcome"):s(n()),window.onpopstate=function(e){s(n())}}(g);
+//# sourceMappingURL=tarea3.9d5871d7.js.map
