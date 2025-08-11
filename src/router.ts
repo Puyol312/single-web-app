@@ -22,7 +22,7 @@ var routes = [
     component:initResult
   }
 ];
-const basePath = "/piedra-papel-tijera";
+const basePath = "/single-web-app";
 
 export function initRouter(container: Element) {
 
