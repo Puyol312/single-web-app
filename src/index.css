@@ -1,9 +1,14 @@
 :root{
-  --color-rojo-ejemplo:#f00; 
+  --default-font-family: "Odibee Sans", sans-serif;
 }
 *{
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 body{
-  margin:0;
+  margin: 0;
+  background-image: url(./assets/img/fondo.png);
+}
+#root{
+  height: 100vh;
+  width: 100%;
 }

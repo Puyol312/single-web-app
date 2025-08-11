@@ -1,3 +1,4 @@
+import { aleatorySelection } from "./utils/aleatorySelection";
 type Jugada = "piedra" | "papel" | "tijera" | "";
 type Game = {
   computerPlay:Jugada,
@@ -9,6 +10,7 @@ enum Resultado {
   perder,
   empatar
 }
+
 class State {
   private static instance: State;
   private currentGame: Game;
@@ -16,17 +18,36 @@ class State {
   private listeners: (() => any)[];
 
   private constructor() { 
-    this.currentGame = {
-      computerPlay: "",
-      myPlay:""
-    };
-    this.history = [];
+    // Intentar cargar desde localStorage
+    const savedData = localStorage.getItem("gameState");
+    if (savedData) {
+      const parsed = JSON.parse(savedData);
+      this.currentGame = parsed.currentGame || { computerPlay: "", myPlay: "" };
+      this.history = parsed.history || [];
+    } else {
+      this.currentGame = { computerPlay: "", myPlay: "" };
+      this.history = [];
+    }
     this.listeners = [];
   }
+
   private saveHistory(game: Game) { 
-    if (game && game.computerPlay && game.myPlay)
-      this.history.push(game)
+    if (game && game.computerPlay && game.myPlay) {
+      this.history.push(game);
+      this.saveToLocalStorage(); // guardar cada vez que se actualiza
+    }
   }
+
+  private saveToLocalStorage() {
+    localStorage.setItem(
+      "gameState",
+      JSON.stringify({
+        currentGame: this.currentGame,
+        history: this.history
+      })
+    );
+  }
+
   private notify() { 
     for (const listener of this.listeners) {
       listener();
@@ -36,35 +57,46 @@ class State {
   public static getInstance(): State {
     if (!this.instance)
       this.instance = new State(); 
-    return this.instance
+    return this.instance;
   }
+
   public getState(): Game { 
     return this.currentGame;
   }
+
   public getHistory(): History { 
-    return [... this.history];
+    return [...this.history];
   }
-  public setMove(myMove: Jugada, computerMove: Jugada) {
+
+  public setMove(myMove: Jugada) {
+    const computerMove = aleatorySelection();
     const currentGame = this.getState();
     currentGame.computerPlay = computerMove;
     currentGame.myPlay = myMove;
     this.saveHistory({ ...currentGame });
+    this.saveToLocalStorage();
     this.notify();
   }
-  public whoWins(myPlay: Jugada, computerPlay: Jugada):Resultado { 
-    let res:Resultado;
+
+  public whoWins(myPlay: Jugada, computerPlay: Jugada): Resultado { 
+    let res: Resultado;
     if (myPlay === computerPlay) {
       res = Resultado.empatar;
-    } else if ((myPlay === "papel" && computerPlay === "tijera") || (myPlay === "piedra" && computerPlay === "papel") || (myPlay === "tijera" && computerPlay === "piedra")) {
+    } else if (
+      (myPlay === "papel" && computerPlay === "tijera") ||
+      (myPlay === "piedra" && computerPlay === "papel") ||
+      (myPlay === "tijera" && computerPlay === "piedra")
+    ) {
       res = Resultado.perder;
     } else { 
       res = Resultado.ganar;
     }
     return res;
   }
+
   public subscribe(callback: () => any) { 
     this.listeners.push(callback);
   }
 }
 
-export { State }
+export { State, Jugada, Resultado }

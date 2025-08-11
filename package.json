@@ -2,17 +2,17 @@
   "name": "tarea3",
   "version": "1.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel serve ./src/index.html",
-    "watch": "parcel watch ./src/index.html",
     "build": "parcel build ./src/index.html --dist-dir build --public-url /single-web-app",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "build-and-deploy": "npm run build && npm run deploy"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@parcel/transformer-image": "^2.15.4",
     "gh-pages": "^6.3.0",
     "parcel": "^2.15.4"
   }
